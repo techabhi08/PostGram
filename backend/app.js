@@ -5,11 +5,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const { v4 : uuidv4 } = require('uuid');
+const dotenv = require('dotenv');
 
 const feedRoutes = require("./routes/feed");
 const authRoutes = require("./routes/auth");
 
 const app = express();
+
+dotenv.config();
 
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -62,7 +65,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "MongoDBURI"
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.sbzzfbg.mongodb.net/messages?retryWrites=true&w=majority`
   )
   .then((result) => {
     const server = app.listen(8080);
