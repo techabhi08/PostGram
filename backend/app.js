@@ -62,7 +62,7 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://Abhinay86:j6jtrDd3E2bruF4C@cluster0.sbzzfbg.mongodb.net/messages?retryWrites=true&w=majority"
+    "MongoDBURI"
   )
   .then((result) => {
     const server = app.listen(8080);
